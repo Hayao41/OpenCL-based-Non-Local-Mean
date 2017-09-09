@@ -19,10 +19,10 @@ __constant sampler_t sampler = CLK_NORMALIZED_COORDS_FALSE | CLK_ADDRESS_CLAMP_T
 *
 */
 __kernel void BlockMatching(
-							read_only image2d_t src,			//input image(read only)
-    						__global short* similar_coords,		//similar blocks' coordinate record array
-							__global uchar* block_counts		//similar blocks counts for every patch block
-							){
+				read_only image2d_t src,			//input image(read only)
+    				__global short* similar_coords,		//similar blocks' coordinate record array
+				__global uchar* block_counts		//similar blocks counts for every patch block
+){
 	__local float   dists[BLOCK_SIZE * BLOCK_SIZE];
 	__local float   distances[MAX_BLOCKS];
 	__local short2  positions[MAX_BLOCKS];
@@ -58,8 +58,8 @@ __kernel void BlockMatching(
 
 
 
-    block_count = 0;
-    dists[tindex] = 0.0f;
+	block_count = 0;
+	dists[tindex] = 0.0f;
     
 	if(tindex < MAX_BLOCKS){
 		distances[tindex] = FLT_MAX;
@@ -226,9 +226,9 @@ __kernel void BlockMatching(
 
 
 __kernel void BlockMatching_Test(
-							read_only image2d_t src,			//input image(read only)
-    						__global short* similar_coords,		//similar blocks' coordinate record array
-							__global uchar* block_counts		//similar blocks counts for every patch block
+				  read_only image2d_t src,			//input image(read only)
+    		  		  __global short* similar_coords,		//similar blocks' coordinate record array
+				  __global uchar* block_counts		        //similar blocks counts for every patch block
 							){
 	//block's iamge coordinate(top left pixel's coordinate for example : block(0,0)'s coordinate is local coodinate(0,0) the block(1,0) is the (8,0))
 	const int x = get_local_size(0) * get_group_id(0);
